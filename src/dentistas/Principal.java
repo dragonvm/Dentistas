@@ -15,6 +15,7 @@ public class Principal extends javax.swing.JFrame {
     Hoy_viejo cHoy = new Hoy_viejo(); //Creo objetos de tab Hoy
     
     //TE BORRAO TO!
+    //SDGA
     
     /**
      * Creates new form Principal
