@@ -14,7 +14,9 @@ public class Principal extends javax.swing.JFrame {
     Configuracion config = new Configuracion(); //Creo objetos de configuracion
     Hoy_viejo cHoy = new Hoy_viejo(); //Creo objetos de tab Hoy
     
-    //COMENTARIO PARA PROBAR GIT
+    // MI COMENTARIO PARA PROBAR GIT POR DANIEL
+    
+    //AHORA FUNCIONA TODO
     
     /**
      * Creates new form Principal
