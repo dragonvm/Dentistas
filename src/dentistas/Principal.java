@@ -18,6 +18,8 @@ public class Principal extends javax.swing.JFrame {
     
     //AHORA FUNCIONA TODO
     
+    //NUEVO COMENTARIO
+    
     /**
      * Creates new form Principal
      */
