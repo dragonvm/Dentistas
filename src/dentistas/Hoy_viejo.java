@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class Hoy {
+public class Hoy_viejo {
     
     
     public void tablaHoy(JTable tablaHoy){

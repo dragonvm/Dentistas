@@ -4,6 +4,7 @@
  */
 package dentistas;
 
+import Controlador.tablaHoy;
 import javax.swing.JLabel;
 import javax.swing.table.TableColumn;
 
@@ -11,7 +12,7 @@ public class Principal extends javax.swing.JFrame {
 
     //Inicializo objetos, en estas clases se encuentran los metodos de cada pestaña
     Configuracion config = new Configuracion(); //Creo objetos de configuracion
-    Hoy cHoy = new Hoy(); //Creo objetos de tab Hoy
+    Hoy_viejo cHoy = new Hoy_viejo(); //Creo objetos de tab Hoy
     
     
     /**
@@ -23,10 +24,6 @@ public class Principal extends javax.swing.JFrame {
         
         //Añado al label la fecha actual
         fecha_actual.setText(config.fecha_actual());
-        
-        //Este metodo crea la tabla y muestra los resultados en la tabla
-        //Se le pasa un jTable (tablaHoy) e implementa un modelo
-        cHoy.tablaHoy(tablaHoy);
         
     }
 
@@ -44,9 +41,20 @@ public class Principal extends javax.swing.JFrame {
         fecha_label = new java.awt.Label();
         fecha_actual = new java.awt.Label();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaHoy = new javax.swing.JTable();
+        JTableHoy = new javax.swing.JTable();
         tabAgenda = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         tabPacientes = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         tabFacturas = new javax.swing.JPanel();
         tabConfiguracion = new javax.swing.JPanel();
         tabHistorias = new javax.swing.JPanel();
@@ -55,29 +63,24 @@ public class Principal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(217, 244, 255));
         setMinimumSize(new java.awt.Dimension(800, 700));
 
-        jTabbedPane1.setBackground(new java.awt.Color(198, 242, 255));
+        jTabbedPane1.setBackground(new java.awt.Color(224, 255, 255));
 
+        tabHoy.setBackground(new java.awt.Color(224, 255, 255));
         tabHoy.setPreferredSize(new java.awt.Dimension(800, 700));
 
         fecha_label.setText("Fecha de hoy: ");
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(39, 102, 255), 2));
         jScrollPane1.setEnabled(false);
         jScrollPane1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(500, 560));
         jScrollPane1.setName(""); // NOI18N
 
-        tablaHoy.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaHoy);
+        tablaHoy modeloTablaHoy = new tablaHoy();
+        Object [] nuevocliente = {"22/10/2013", "Juan Feliu", "Pendiente"};
+        modeloTablaHoy.addRow(nuevocliente);
+        JTableHoy.setModel(modeloTablaHoy);
+        jScrollPane1.setViewportView(JTableHoy);
 
         javax.swing.GroupLayout tabHoyLayout = new javax.swing.GroupLayout(tabHoy);
         tabHoy.setLayout(tabHoyLayout);
@@ -92,7 +95,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(fecha_actual, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabHoyLayout.createSequentialGroup()
                         .addGap(292, 292, 292)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tabHoyLayout.setVerticalGroup(
@@ -113,31 +116,140 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Hoy", tabHoy);
 
+        tabAgenda.setBackground(new java.awt.Color(224, 255, 255));
+
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Hora", "Paciente", "Realizado"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Calendario"))));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 185, Short.MAX_VALUE)
+        );
+
+        jButton1.setText("Nueva Cita");
+
+        jButton2.setText("Editar Cita");
+
         javax.swing.GroupLayout tabAgendaLayout = new javax.swing.GroupLayout(tabAgenda);
         tabAgenda.setLayout(tabAgendaLayout);
         tabAgendaLayout.setHorizontalGroup(
             tabAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(tabAgendaLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(tabAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addContainerGap())
         );
         tabAgendaLayout.setVerticalGroup(
             tabAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGroup(tabAgendaLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(tabAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabAgendaLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Agenda", tabAgenda);
+
+        tabPacientes.setBackground(new java.awt.Color(224, 255, 255));
+
+        jScrollPane3.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(454, 404));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Hora", "Paciente", "Realizado"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jButton3.setText("Nuevo Paciente");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Editar Paciente");
+
+        jButton5.setText("Eliminar Paciente");
 
         javax.swing.GroupLayout tabPacientesLayout = new javax.swing.GroupLayout(tabPacientes);
         tabPacientes.setLayout(tabPacientesLayout);
         tabPacientesLayout.setHorizontalGroup(
             tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(tabPacientesLayout.createSequentialGroup()
+                .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(tabPacientesLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabPacientesLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         tabPacientesLayout.setVerticalGroup(
             tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPacientesLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tabPacientesLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Pacientes", tabPacientes);
+
+        tabFacturas.setBackground(new java.awt.Color(224, 255, 255));
 
         javax.swing.GroupLayout tabFacturasLayout = new javax.swing.GroupLayout(tabFacturas);
         tabFacturas.setLayout(tabFacturasLayout);
@@ -147,10 +259,12 @@ public class Principal extends javax.swing.JFrame {
         );
         tabFacturasLayout.setVerticalGroup(
             tabFacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Facturas", tabFacturas);
+
+        tabConfiguracion.setBackground(new java.awt.Color(224, 255, 255));
 
         javax.swing.GroupLayout tabConfiguracionLayout = new javax.swing.GroupLayout(tabConfiguracion);
         tabConfiguracion.setLayout(tabConfiguracionLayout);
@@ -160,10 +274,12 @@ public class Principal extends javax.swing.JFrame {
         );
         tabConfiguracionLayout.setVerticalGroup(
             tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Historias", tabConfiguracion);
+
+        tabHistorias.setBackground(new java.awt.Color(224, 255, 255));
 
         javax.swing.GroupLayout tabHistoriasLayout = new javax.swing.GroupLayout(tabHistorias);
         tabHistorias.setLayout(tabHistoriasLayout);
@@ -173,7 +289,7 @@ public class Principal extends javax.swing.JFrame {
         );
         tabHistoriasLayout.setVerticalGroup(
             tabHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Configuración", tabHistorias);
@@ -191,6 +307,10 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,16 +355,28 @@ public class Principal extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTableHoy;
     private java.awt.Label fecha_actual;
     private java.awt.Label fecha_label;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel tabAgenda;
     private javax.swing.JPanel tabConfiguracion;
     private javax.swing.JPanel tabFacturas;
     private javax.swing.JPanel tabHistorias;
     private javax.swing.JPanel tabHoy;
     private javax.swing.JPanel tabPacientes;
-    private javax.swing.JTable tablaHoy;
     // End of variables declaration//GEN-END:variables
+
 }
