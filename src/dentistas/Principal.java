@@ -64,7 +64,6 @@ public class Principal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         tabFacturas = new javax.swing.JPanel();
         tabConfiguracion = new javax.swing.JPanel();
-        tabHistorias = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(217, 244, 255));
@@ -295,22 +294,7 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 575, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Historias", tabConfiguracion);
-
-        tabHistorias.setBackground(new java.awt.Color(224, 255, 255));
-
-        javax.swing.GroupLayout tabHistoriasLayout = new javax.swing.GroupLayout(tabHistorias);
-        tabHistorias.setLayout(tabHistoriasLayout);
-        tabHistoriasLayout.setHorizontalGroup(
-            tabHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        tabHistoriasLayout.setVerticalGroup(
-            tabHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Configuración", tabHistorias);
+        jTabbedPane1.addTab("Configuración", null, tabConfiguracion, "");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -397,7 +381,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel tabAgenda;
     private javax.swing.JPanel tabConfiguracion;
     private javax.swing.JPanel tabFacturas;
-    private javax.swing.JPanel tabHistorias;
     private javax.swing.JPanel tabHoy;
     private javax.swing.JPanel tabPacientes;
     // End of variables declaration//GEN-END:variables
