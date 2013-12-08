@@ -57,7 +57,7 @@ public class Principal extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
              JOptionPane.showConfirmDialog(rootPane, "¿Estas seguro que deseas borrar este Paciente?", "Eliminar Paciente",JOptionPane.YES_NO_OPTION);
-            // this.JOptionPane.showConfirmDialog(this,"¿Le esta gustando el curso de Swing?","Curso BBDD y Java",JOptionPane.YES_NO_CANCEL_OPTION);
+            
             }
         });
     }
@@ -229,7 +229,7 @@ public class Principal extends javax.swing.JFrame {
 
         tabPacientes.setBackground(new java.awt.Color(224, 255, 255));
 
-        jScrollPane3.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jScrollPane3.setMaximumSize(getMaximumSize());
         jScrollPane3.setPreferredSize(new java.awt.Dimension(454, 404));
 
         jTablePacientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,19 +261,19 @@ public class Principal extends javax.swing.JFrame {
         tabPacientesLayout.setHorizontalGroup(
             tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPacientesLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(19, 19, 19)
                 .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addContainerGap())
         );
         tabPacientesLayout.setVerticalGroup(
             tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPacientesLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+            .addGroup(tabPacientesLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPacientesLayout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,8 +281,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(117, 117, 117))
         );
 
         jTabbedPane1.addTab("Pacientes", tabPacientes);

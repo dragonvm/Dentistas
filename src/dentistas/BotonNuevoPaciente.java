@@ -15,9 +15,6 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
      */
     public BotonNuevoPaciente() {
         initComponents();
-        String nombre=this.jTextField1.getName();
-        
-        System.out.println(nombre);
     }
 
     /**
@@ -172,6 +169,7 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new BotonNuevoPaciente().setVisible(true);
             }
