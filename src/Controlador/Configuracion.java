@@ -1,12 +1,12 @@
 
-package dentistas;
+package Controlador;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Configuracion {
-    public String fecha_actual(){
+    public static String fecha_actual(){
         String fecha_actual;
         Date fechahoy = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
