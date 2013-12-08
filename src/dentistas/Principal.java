@@ -25,8 +25,15 @@ public class Principal extends javax.swing.JFrame {
         
         //Añado al label la fecha actual
         fecha_actual.setText(Configuracion.fecha_actual());
-        this.jButton1.addActionListener(new java.awt.event.ActionListener() {
-            
+        
+        //PESTAÑA HOY
+            tablaHoy modeloTablaHoy = new tablaHoy();
+            Object [] nuevocliente = {"22/10/2013", "Juan Feliu", "Pendiente"};
+            modeloTablaHoy.addRow(nuevocliente);
+            JTableHoy.setModel(modeloTablaHoy);
+        //FIN PESTAÑA HOY
+        
+        this.jButton1.addActionListener(new java.awt.event.ActionListener() {            
             @Override
             public void actionPerformed(ActionEvent e) {
               BotonNuevaCita view=new BotonNuevaCita();              
@@ -109,11 +116,6 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(500, 560));
         jScrollPane1.setName(""); // NOI18N
-
-        tablaHoy modeloTablaHoy = new tablaHoy();
-        Object [] nuevocliente = {"22/10/2013", "Juan Feliu", "Pendiente"};
-        modeloTablaHoy.addRow(nuevocliente);
-        JTableHoy.setModel(modeloTablaHoy);
         jScrollPane1.setViewportView(JTableHoy);
 
         javax.swing.GroupLayout tabHoyLayout = new javax.swing.GroupLayout(tabHoy);
