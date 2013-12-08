@@ -5,7 +5,11 @@
 package dentistas;
 
 import Controlador.tablaHoy;
+import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.TableColumn;
 
 public class Principal extends javax.swing.JFrame {
@@ -30,7 +34,41 @@ public class Principal extends javax.swing.JFrame {
         
         //Añado al label la fecha actual
         fecha_actual.setText(config.fecha_actual());
-        
+        this.jButton1.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              BotonNuevaCita view=new BotonNuevaCita();              
+              view.setVisible(true);
+              view.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            }
+        });
+        this.jButton3.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              BotonNuevoPaciente view=new BotonNuevoPaciente();              
+              view.setVisible(true);
+              view.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            }
+        });
+        this.jButton4.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              BotonEditarPaciente view=new BotonEditarPaciente();              
+              view.setVisible(true);
+              view.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            }
+        });
+        this.jButton5.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             JOptionPane.showConfirmDialog(rootPane, "¿Estas seguro que deseas borrar este Paciente?", "Eliminar Paciente",JOptionPane.YES_NO_OPTION);
+            // this.JOptionPane.showConfirmDialog(this,"¿Le esta gustando el curso de Swing?","Curso BBDD y Java",JOptionPane.YES_NO_CANCEL_OPTION);
+            }
+        });
     }
 
     /**
@@ -233,18 +271,19 @@ public class Principal extends javax.swing.JFrame {
         tabPacientesLayout.setHorizontalGroup(
             tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPacientesLayout.createSequentialGroup()
-                .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPacientesLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tabPacientesLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPacientesLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         tabPacientesLayout.setVerticalGroup(
@@ -254,13 +293,13 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabPacientesLayout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
