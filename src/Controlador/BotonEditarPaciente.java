@@ -7,6 +7,8 @@ package Controlador;
 import dentistas.Principal;
 import static dentistas.Principal.modeloTablaPacientes;
 import static dentistas.Principal.pacientes;
+import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -63,6 +65,11 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
         });
 
         cancelarPacientebtn.setText("Cancelar");
+        cancelarPacientebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarPacientebtnMouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Nombre:");
 
@@ -163,6 +170,11 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
     private void textDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textDNIActionPerformed
+
+    private void cancelarPacientebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarPacientebtnMouseClicked
+        dispose();
+        
+    }//GEN-LAST:event_cancelarPacientebtnMouseClicked
 
     /**
      * @param args the command line arguments

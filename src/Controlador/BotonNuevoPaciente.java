@@ -55,6 +55,11 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
         });
 
         cancelarPacientebtn.setText("Cancelar");
+        cancelarPacientebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarPacientebtnMouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Nombre:");
 
@@ -146,6 +151,10 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
         modeloTablaPacientes.addRow(datosPaciente);
         dispose();
     }//GEN-LAST:event_anadirPacientebtnActionPerformed
+
+    private void cancelarPacientebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarPacientebtnMouseClicked
+        dispose();
+    }//GEN-LAST:event_cancelarPacientebtnMouseClicked
 
     /**
      * @param args the command line arguments

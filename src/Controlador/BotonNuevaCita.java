@@ -87,6 +87,11 @@ public class BotonNuevaCita extends javax.swing.JFrame {
         anadircitabot.setText("Añadir");
 
         cancelarcitabot.setText("Cancelar");
+        cancelarcitabot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarcitabotMouseClicked(evt);
+            }
+        });
 
         jLabel5.setText("Dia:");
 
@@ -199,6 +204,10 @@ public class BotonNuevaCita extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelarcitabotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarcitabotMouseClicked
+        dispose();
+    }//GEN-LAST:event_cancelarcitabotMouseClicked
 
     /**
      * @param args the command line arguments
