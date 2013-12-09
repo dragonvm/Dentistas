@@ -6,6 +6,7 @@ package dentistas;
 
 import Controlador.Configuracion;
 import Controlador.datosPacientes;
+import Controlador.tablaCitas;
 import Controlador.tablaHoy;
 import Controlador.tablaHoyRenderer;
 import Controlador.tablaPacientes;
@@ -28,7 +29,9 @@ public class Principal extends javax.swing.JFrame {
      */
     
     public static tablaPacientes modeloTablaPacientes = new tablaPacientes();
+     public static tablaCitas modeloTablaCitas = new tablaCitas();
     public static datosPacientes pacientes = new datosPacientes();
+    public static datosCitas citas = new datosCitas();
     public static int pacienteSelec=-1;
     
     public Principal() {

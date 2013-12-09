@@ -6,7 +6,10 @@ package dentistas;
 
 import java.text.SimpleDateFormat;
 import Controlador.datosPacientes;
+import static dentistas.Principal.citas;
 import static dentistas.Principal.pacientes;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -25,8 +28,22 @@ public class BotonNuevaCita extends javax.swing.JFrame {
         for(int i=0;i<pacientes.getNumPacientes();i++){
             listaPacientes[i]=pacientes.getNombre(i);
         }
-            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(listaPacientes));
-        
+            textPaciente.setModel(new javax.swing.DefaultComboBoxModel(listaPacientes));
+        anadircitabot.addMouseListener(new MouseAdapter(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                String dia, hora, paciente;
+                  String [] arraycita = {textHora.getText(),textPaciente.getName(),textNota.getText()};
+                  citas.addCita(textHora.getText(),textPaciente.getName(),textNota.getText());
+                  modeloTablaCitas.addRow(datosCitas);
+                  dispose();
+            }
+            
+            
+            
+        });
     }
 
     /**
@@ -44,13 +61,13 @@ public class BotonNuevaCita extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        textPaciente = new javax.swing.JComboBox();
         textDia = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        textNota = new javax.swing.JTextArea();
         jCalendarCita = new com.toedter.calendar.JCalendar();
-        jTextField1 = new javax.swing.JTextField();
+        textHora = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,17 +84,17 @@ public class BotonNuevaCita extends javax.swing.JFrame {
 
         jLabel7.setText("Paciente:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        textPaciente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         textDia.setMinimumSize(new java.awt.Dimension(433, 457));
 
         jLabel8.setText("Nota:");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        textNota.setColumns(20);
+        textNota.setRows(5);
+        jScrollPane2.setViewportView(textNota);
 
-        jTextField1.setText(" ");
+        textHora.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,7 +117,7 @@ public class BotonNuevaCita extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(textPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -111,7 +128,7 @@ public class BotonNuevaCita extends javax.swing.JFrame {
                                                 .addGap(36, 36, 36)))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(textDia, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField1))))
+                                            .addComponent(textHora))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCalendarCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22))
@@ -135,11 +152,11 @@ public class BotonNuevaCita extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(textPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -225,15 +242,15 @@ public class BotonNuevaCita extends javax.swing.JFrame {
     private javax.swing.JButton anadircitabot;
     private javax.swing.JButton cancelarcitabot;
     private com.toedter.calendar.JCalendar jCalendarCita;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JFormattedTextField textDia;
+    private javax.swing.JTextField textHora;
+    private javax.swing.JTextArea textNota;
+    private javax.swing.JComboBox textPaciente;
     // End of variables declaration//GEN-END:variables
 }
