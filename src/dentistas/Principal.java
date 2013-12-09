@@ -10,6 +10,9 @@ import Controlador.tablaHoy;
 import Controlador.tablaHoyRenderer;
 import Controlador.tablaPacientes;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
     
     public static tablaPacientes modeloTablaPacientes = new tablaPacientes();
     public static datosPacientes pacientes = new datosPacientes();
+    public static int pacienteSelec=-1;
     
     public Principal() {
         super("Programa dentistas por Daniel y Hector");
@@ -47,6 +51,38 @@ public class Principal extends javax.swing.JFrame {
             
         //PESTAÑA PACIENTES
             JTablePacientes.setModel(modeloTablaPacientes);
+            JTablePacientes.addMouseListener(new MouseListener(){
+                //MouseAdapter no funcionaba y usamos MouseListener
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = JTablePacientes.rowAtPoint(e.getPoint());
+                    int columna = JTablePacientes.columnAtPoint(e.getPoint());
+                    //Si se marca fuera de las filas o columnas el valor se pone a -1
+                    if ((fila > -1) && (columna > -1)){
+                        Principal.pacienteSelec=fila;
+                    }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                
+            }
+            });
         //FIN PESTAÑA PACIENTES
         
         this.jButton1.addActionListener(new java.awt.event.ActionListener() {            
@@ -75,12 +111,19 @@ public class Principal extends javax.swing.JFrame {
               view.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             }
         });
-        this.jButton5.addActionListener(new java.awt.event.ActionListener() {
+        this.eliminarPacientebtn.addActionListener(new java.awt.event.ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-             JOptionPane.showConfirmDialog(rootPane, "¿Estas seguro que deseas borrar este Paciente?", "Eliminar Paciente",JOptionPane.YES_NO_OPTION);
-            
+            if(Principal.pacienteSelec>-1){
+                int dialogoborrar = JOptionPane.showConfirmDialog(rootPane, "¿Estas seguro que deseas borrar este Paciente?", "Eliminar Paciente",JOptionPane.YES_NO_OPTION);
+                
+                if(dialogoborrar == JOptionPane.YES_OPTION){
+                    pacientes.removePaciente(Principal.pacienteSelec);
+                    modeloTablaPacientes.removeRow(Principal.pacienteSelec);
+                }
+                
+            }
             }
         });
     }
@@ -112,7 +155,7 @@ public class Principal extends javax.swing.JFrame {
         JTablePacientes = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        eliminarPacientebtn = new javax.swing.JButton();
         tabFacturas = new javax.swing.JPanel();
         tabConfiguracion = new javax.swing.JPanel();
 
@@ -249,6 +292,12 @@ public class Principal extends javax.swing.JFrame {
 
         jScrollPane3.setMaximumSize(getMaximumSize());
         jScrollPane3.setPreferredSize(new java.awt.Dimension(454, 404));
+
+        JTablePacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTablePacientesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(JTablePacientes);
 
         jButton3.setText("Nuevo Paciente");
@@ -260,7 +309,7 @@ public class Principal extends javax.swing.JFrame {
 
         jButton4.setText("Editar Paciente");
 
-        jButton5.setText("Eliminar Paciente");
+        eliminarPacientebtn.setText("Eliminar Paciente");
 
         javax.swing.GroupLayout tabPacientesLayout = new javax.swing.GroupLayout(tabPacientes);
         tabPacientes.setLayout(tabPacientesLayout);
@@ -271,7 +320,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(tabPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eliminarPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
                 .addContainerGap())
@@ -286,7 +335,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminarPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(117, 117, 117))
@@ -346,6 +395,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void JTablePacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablePacientesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTablePacientesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -391,13 +444,13 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableHoy;
     private javax.swing.JTable JTablePacientes;
+    private javax.swing.JButton eliminarPacientebtn;
     private java.awt.Label fecha_actual;
     private java.awt.Label fecha_label;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

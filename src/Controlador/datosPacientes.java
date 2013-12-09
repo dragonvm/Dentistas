@@ -24,8 +24,14 @@ public class datosPacientes {
         numPacientes++;
     }
     
+    public void updatePaciente(int i, String nombre, String apellidos, String dni, String direccion, String telefono){
+        String datosPacientes[]={nombre, apellidos, dni, direccion, telefono};
+        pacientes.set(i, datosPacientes);
+    }
+    
     public void removePaciente(int i){
         pacientes.remove(i);
+        numPacientes--;
     }
     
     public String getNombre(int i){
