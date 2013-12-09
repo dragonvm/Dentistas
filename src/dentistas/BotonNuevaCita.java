@@ -4,9 +4,11 @@
  */
 package dentistas;
 
+import Controlador.datosCitas;
 import java.text.SimpleDateFormat;
 import Controlador.datosPacientes;
 import static dentistas.Principal.citas;
+import static dentistas.Principal.modeloTablaCitas;
 import static dentistas.Principal.pacientes;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,22 +30,27 @@ public class BotonNuevaCita extends javax.swing.JFrame {
         for(int i=0;i<pacientes.getNumPacientes();i++){
             listaPacientes[i]=pacientes.getNombre(i);
         }
+
             textPaciente.setModel(new javax.swing.DefaultComboBoxModel(listaPacientes));
         anadircitabot.addMouseListener(new MouseAdapter(){
+            private Object[] datosCitas;
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                String dia, hora, paciente;
+               
                   String [] arraycita = {textHora.getText(),textPaciente.getName(),textNota.getText()};
-                  citas.addCita(textHora.getText(),textPaciente.getName(),textNota.getText());
-                  modeloTablaCitas.addRow(datosCitas);
+                  citas.addCita(textDia.getText(),textHora.getText(), textPaciente.getName(),textNota.getText());
+                  modeloTablaCitas.addRow(arraycita);
                   dispose();
             }
             
             
             
         });
+
+            textPaciente.setModel(new javax.swing.DefaultComboBoxModel(listaPacientes));
+
     }
 
     /**
