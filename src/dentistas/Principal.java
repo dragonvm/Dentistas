@@ -5,8 +5,10 @@
 package dentistas;
 
 import Controlador.Configuracion;
+import Controlador.datosPacientes;
 import Controlador.tablaHoy;
 import Controlador.tablaHoyRenderer;
+import Controlador.tablaPacientes;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +23,10 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    
+    public static tablaPacientes modeloTablaPacientes = new tablaPacientes();
+    public static datosPacientes pacientes = new datosPacientes();
+    
     public Principal() {
         super("Programa dentistas por Daniel y Hector");
         initComponents();
@@ -38,6 +44,10 @@ public class Principal extends javax.swing.JFrame {
             JTableHoy.setModel(modeloTablaHoy);
             JTableHoy.setDefaultRenderer(Object.class, rendererTablaHoy);
         //FIN PESTAÑA HOY
+            
+        //PESTAÑA PACIENTES
+            JTablePacientes.setModel(modeloTablaPacientes);
+        //FIN PESTAÑA PACIENTES
         
         this.jButton1.addActionListener(new java.awt.event.ActionListener() {            
             @Override
@@ -99,7 +109,7 @@ public class Principal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         tabPacientes = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTablePacientes = new javax.swing.JTable();
+        JTablePacientes = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -239,19 +249,7 @@ public class Principal extends javax.swing.JFrame {
 
         jScrollPane3.setMaximumSize(getMaximumSize());
         jScrollPane3.setPreferredSize(new java.awt.Dimension(454, 404));
-
-        jTablePacientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Hora", "Paciente", "Realizado"
-            }
-        ));
-        jScrollPane3.setViewportView(jTablePacientes);
+        jScrollPane3.setViewportView(JTablePacientes);
 
         jButton3.setText("Nuevo Paciente");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +286,8 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(117, 117, 117))
         );
@@ -391,6 +390,7 @@ public class Principal extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableHoy;
+    private javax.swing.JTable JTablePacientes;
     private java.awt.Label fecha_actual;
     private java.awt.Label fecha_label;
     private javax.swing.JButton jButton1;
@@ -405,7 +405,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTablePacientes;
     private javax.swing.JPanel tabAgenda;
     private javax.swing.JPanel tabConfiguracion;
     private javax.swing.JPanel tabFacturas;

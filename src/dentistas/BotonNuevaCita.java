@@ -5,6 +5,7 @@
 package dentistas;
 
 import java.text.SimpleDateFormat;
+import Controlador.datosPacientes;
 
 /**
  *
@@ -18,6 +19,14 @@ public class BotonNuevaCita extends javax.swing.JFrame {
     public BotonNuevaCita() {
         initComponents();
         obtenerFecha();
+        
+        datosPacientes pacientes = new datosPacientes();
+        String [] listaPacientes=new String[pacientes.getNumPacientes()];
+        for(int i=0;i<pacientes.getNumPacientes();i++){
+            listaPacientes[i]=pacientes.getNombre(i);
+        }
+            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(listaPacientes));
+        
     }
 
     /**

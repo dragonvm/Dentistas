@@ -14,34 +14,47 @@ import java.util.ArrayList;
  */
 public class datosPacientes {
     
+    ArrayList pacientes = new ArrayList();
     String nombre, apellidos, dni, direccion, telefono;
-    
-    public datosPacientes(ArrayList<String> datosPaciente){
-        this.nombre=datosPaciente.get(0);
-        this.apellidos=datosPaciente.get(1);
-        this.dni=datosPaciente.get(2);
-        this.direccion=datosPaciente.get(3);
-        this.telefono=datosPaciente.get(4);
+    int numPacientes=0;
+
+    public void addPaciente(String nombre, String apellidos, String dni, String direccion, String telefono){
+        String datosPacientes[]={nombre, apellidos, dni, direccion, telefono};
+        pacientes.add(datosPacientes);
+        numPacientes++;
     }
     
-    public String getNombre(){
-        return this.nombre;
+    public void removePaciente(int i){
+        pacientes.remove(i);
     }
     
-    public String getApellidos(){
-        return this.apellidos;
+    public String getNombre(int i){
+        String [] datos = (String[]) pacientes.get(i);
+        return datos[0];
     }
     
-    public String getDNI(){
-        return this.dni;
+    public String getApellidos(int i){
+        String [] datos = (String[]) pacientes.get(i);
+        return datos[1];
     }
     
-    public String getDireccion(){
-        return this.direccion;
+    public String getDNI(int i){
+        String [] datos = (String[]) pacientes.get(i);
+        return datos[2];
     }
     
-    public String getTelefono(){
-        return this.telefono;
+    public String getDireccion(int i){
+        String [] datos = (String[]) pacientes.get(i);
+        return datos[3];
+    }
+    
+    public String getTelefono(int i){
+        String [] datos = (String[]) pacientes.get(i);
+        return datos[4];
+    }
+    
+    public int getNumPacientes(){
+        return this.numPacientes;
     }
     
 }
