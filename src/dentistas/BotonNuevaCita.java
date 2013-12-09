@@ -6,6 +6,7 @@ package dentistas;
 
 import java.text.SimpleDateFormat;
 import Controlador.datosPacientes;
+import static dentistas.Principal.pacientes;
 
 /**
  *
@@ -19,8 +20,7 @@ public class BotonNuevaCita extends javax.swing.JFrame {
     public BotonNuevaCita() {
         initComponents();
         obtenerFecha();
-        
-        datosPacientes pacientes = new datosPacientes();
+
         String [] listaPacientes=new String[pacientes.getNumPacientes()];
         for(int i=0;i<pacientes.getNumPacientes();i++){
             listaPacientes[i]=pacientes.getNombre(i);

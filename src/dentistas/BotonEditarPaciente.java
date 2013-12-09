@@ -4,6 +4,9 @@
  */
 package dentistas;
 
+import static dentistas.Principal.modeloTablaPacientes;
+import static dentistas.Principal.pacientes;
+
 /**
  *
  * @author Hector
@@ -15,6 +18,13 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
      */
     public BotonEditarPaciente() {
         initComponents();
+        int pacienteSelec=Principal.pacienteSelec;
+        
+        textNombre.setText(Principal.pacientes.getNombre(pacienteSelec));
+        textApellidos.setText(Principal.pacientes.getApellidos(pacienteSelec));
+        textDNI.setText(Principal.pacientes.getDNI(pacienteSelec));
+        textDireccion.setText(Principal.pacientes.getDireccion(pacienteSelec));
+        textTelefono.setText(Principal.pacientes.getTelefono(pacienteSelec));
     }
 
     /**
@@ -27,8 +37,8 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        editarPacientebtn = new javax.swing.JButton();
+        cancelarPacientebtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,14 +54,14 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Paciente"));
 
-        jButton1.setText("Editar Paciente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editarPacientebtn.setText("Editar Paciente");
+        editarPacientebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editarPacientebtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
+        cancelarPacientebtn.setText("Cancelar");
 
         jLabel1.setText("Nombre:");
 
@@ -77,9 +87,9 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editarPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cancelarPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -123,8 +133,8 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelarPacientebtn, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(editarPacientebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
         );
 
@@ -142,9 +152,12 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void editarPacientebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPacientebtnActionPerformed
+        String [] datosPaciente = {textNombre.getText(),textApellidos.getText(),textDNI.getText(),textDireccion.getText(),textTelefono.getText()};
+        pacientes.updatePaciente(Principal.pacienteSelec, textNombre.getText(),textApellidos.getText(),textDNI.getText(),textDireccion.getText(),textTelefono.getText());
+        modeloTablaPacientes.updateRow(Principal.pacienteSelec, datosPaciente);
+        dispose();
+    }//GEN-LAST:event_editarPacientebtnActionPerformed
 
     private void textDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDNIActionPerformed
         // TODO add your handling code here:
@@ -185,8 +198,8 @@ public class BotonEditarPaciente extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelarPacientebtn;
+    private javax.swing.JButton editarPacientebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

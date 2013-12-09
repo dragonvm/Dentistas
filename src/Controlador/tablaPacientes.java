@@ -5,6 +5,7 @@
 package Controlador;
 
 import java.util.ArrayList;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -18,6 +19,17 @@ public class tablaPacientes extends AbstractTableModel {
     
     public void addRow(Object [] fila){
         datos.add(fila);
+        this.fireTableDataChanged();  
+    }
+    
+    public void updateRow(int i, Object [] fila){
+        datos.remove(i);
+        datos.add(i, fila);
+        this.fireTableDataChanged();
+    }
+    
+    public void removeRow(int i){
+        datos.remove(i);
         this.fireTableDataChanged();  
     }
     
@@ -52,6 +64,7 @@ public class tablaPacientes extends AbstractTableModel {
         Object [] fila = (Object []) datos.get(row);
         fila[col] = valor;
         fireTableCellUpdated(row, col);
-    }
+    }    
+    
     
 }
