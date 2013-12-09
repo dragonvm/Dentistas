@@ -15,6 +15,7 @@ import Controlador.tablaHoy;
 import Controlador.tablaHoyRenderer;
 import Controlador.tablaPacientes;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -67,8 +68,7 @@ public class Principal extends javax.swing.JFrame {
         //FIN PESTAÑA PACIENTES
             
             JTableCitas.setModel(modeloTablaCitas);
-            JTableCitas.addMouseListener(new MouseListener(){
-                //MouseAdapter no funcionaba y usamos MouseListener
+            JTableCitas.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
                 int fila = JTableCitas.rowAtPoint(e.getPoint());
@@ -77,26 +77,6 @@ public class Principal extends javax.swing.JFrame {
                     if ((fila > -1) && (columna > -1)){
                         Principal.pacienteSelec=fila;
                     }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-               
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                
             }
             });
         
