@@ -2,11 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package dentistas;
+package Controlador;
 
-import Controlador.datosCitas;
 import java.text.SimpleDateFormat;
-import Controlador.datosPacientes;
 import static dentistas.Principal.citas;
 import static dentistas.Principal.modeloTablaCitas;
 import static dentistas.Principal.pacientes;

@@ -4,6 +4,9 @@
  */
 package dentistas;
 
+import Controlador.BotonNuevaCita;
+import Controlador.BotonEditarPaciente;
+import Controlador.BotonNuevoPaciente;
 import Controlador.Configuracion;
 import Controlador.datosCitas;
 import Controlador.datosPacientes;
@@ -12,15 +15,11 @@ import Controlador.tablaHoy;
 import Controlador.tablaHoyRenderer;
 import Controlador.tablaPacientes;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
+
 
 public class Principal extends javax.swing.JFrame {
 
