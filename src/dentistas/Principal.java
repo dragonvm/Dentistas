@@ -156,7 +156,6 @@ public class Principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         eliminarPacientebtn = new javax.swing.JButton();
-        tabFacturas = new javax.swing.JPanel();
         tabConfiguracion = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -343,21 +342,6 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pacientes", tabPacientes);
 
-        tabFacturas.setBackground(new java.awt.Color(224, 255, 255));
-
-        javax.swing.GroupLayout tabFacturasLayout = new javax.swing.GroupLayout(tabFacturas);
-        tabFacturas.setLayout(tabFacturasLayout);
-        tabFacturasLayout.setHorizontalGroup(
-            tabFacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        tabFacturasLayout.setVerticalGroup(
-            tabFacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Facturas", tabFacturas);
-
         tabConfiguracion.setBackground(new java.awt.Color(224, 255, 255));
 
         javax.swing.GroupLayout tabConfiguracionLayout = new javax.swing.GroupLayout(tabConfiguracion);
@@ -387,10 +371,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -398,6 +378,10 @@ public class Principal extends javax.swing.JFrame {
     private void JTablePacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablePacientesMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_JTablePacientesMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,7 +444,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel tabAgenda;
     private javax.swing.JPanel tabConfiguracion;
-    private javax.swing.JPanel tabFacturas;
     private javax.swing.JPanel tabHoy;
     private javax.swing.JPanel tabPacientes;
     // End of variables declaration//GEN-END:variables

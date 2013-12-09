@@ -26,7 +26,7 @@ public class BotonNuevaCita extends javax.swing.JFrame {
             listaPacientes[i]=pacientes.getNombre(i);
         }
             jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(listaPacientes));
-        
+            
     }
 
     /**
