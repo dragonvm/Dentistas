@@ -51,8 +51,7 @@ public class Principal extends javax.swing.JFrame {
             
         //PESTAÑA PACIENTES
             JTablePacientes.setModel(modeloTablaPacientes);
-            JTablePacientes.addMouseListener(new MouseListener(){
-                //MouseAdapter no funcionaba y usamos MouseListener
+            JTablePacientes.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
                 int fila = JTablePacientes.rowAtPoint(e.getPoint());
@@ -61,26 +60,6 @@ public class Principal extends javax.swing.JFrame {
                     if ((fila > -1) && (columna > -1)){
                         Principal.pacienteSelec=fila;
                     }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-               
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                
             }
             });
         //FIN PESTAÑA PACIENTES
