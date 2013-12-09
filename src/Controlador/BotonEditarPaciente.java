@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package dentistas;
+package Controlador;
 
-import Controlador.datosPacientes;
-import Controlador.tablaPacientes;
+import dentistas.Principal;
 import static dentistas.Principal.modeloTablaPacientes;
 import static dentistas.Principal.pacientes;
 
@@ -13,13 +12,20 @@ import static dentistas.Principal.pacientes;
  *
  * @author Hector
  */
-public class BotonNuevoPaciente extends javax.swing.JFrame {
+public class BotonEditarPaciente extends javax.swing.JFrame {
 
     /**
      * Creates new form BotonNuevoPaciente
      */
-    public BotonNuevoPaciente() {
+    public BotonEditarPaciente() {
         initComponents();
+        int pacienteSelec=Principal.pacienteSelec;
+        
+        textNombre.setText(Principal.pacientes.getNombre(pacienteSelec));
+        textApellidos.setText(Principal.pacientes.getApellidos(pacienteSelec));
+        textDNI.setText(Principal.pacientes.getDNI(pacienteSelec));
+        textDireccion.setText(Principal.pacientes.getDireccion(pacienteSelec));
+        textTelefono.setText(Principal.pacientes.getTelefono(pacienteSelec));
     }
 
     /**
@@ -32,7 +38,7 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        anadirPacientebtn = new javax.swing.JButton();
+        editarPacientebtn = new javax.swing.JButton();
         cancelarPacientebtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,12 +53,12 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Paciente"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Paciente"));
 
-        anadirPacientebtn.setText("Añadir Paciente");
-        anadirPacientebtn.addActionListener(new java.awt.event.ActionListener() {
+        editarPacientebtn.setText("Editar Paciente");
+        editarPacientebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anadirPacientebtnActionPerformed(evt);
+                editarPacientebtnActionPerformed(evt);
             }
         });
 
@@ -68,6 +74,12 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
 
         jLabel5.setText("Direccion:");
 
+        textDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDNIActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -76,7 +88,7 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(anadirPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editarPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(cancelarPacientebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -88,8 +100,8 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textDNI)
-                                    .addComponent(textNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                    .addComponent(textDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                    .addComponent(textNombre))
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -123,7 +135,7 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(cancelarPacientebtn, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(anadirPacientebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editarPacientebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
         );
 
@@ -141,13 +153,16 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void anadirPacientebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirPacientebtnActionPerformed
-
+    private void editarPacientebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPacientebtnActionPerformed
         String [] datosPaciente = {textNombre.getText(),textApellidos.getText(),textDNI.getText(),textDireccion.getText(),textTelefono.getText()};
-        pacientes.addPaciente(textNombre.getText(),textApellidos.getText(),textDNI.getText(),textDireccion.getText(),textTelefono.getText());
-        modeloTablaPacientes.addRow(datosPaciente);
+        pacientes.updatePaciente(Principal.pacienteSelec, textNombre.getText(),textApellidos.getText(),textDNI.getText(),textDireccion.getText(),textTelefono.getText());
+        modeloTablaPacientes.updateRow(Principal.pacienteSelec, datosPaciente);
         dispose();
-    }//GEN-LAST:event_anadirPacientebtnActionPerformed
+    }//GEN-LAST:event_editarPacientebtnActionPerformed
+
+    private void textDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textDNIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,27 +181,26 @@ public class BotonNuevoPaciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BotonNuevoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BotonEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BotonNuevoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BotonEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BotonNuevoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BotonEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BotonNuevoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BotonEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
-                new BotonNuevoPaciente().setVisible(true);
+                new BotonEditarPaciente().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton anadirPacientebtn;
     private javax.swing.JButton cancelarPacientebtn;
+    private javax.swing.JButton editarPacientebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
