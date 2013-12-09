@@ -16,14 +16,6 @@ public class tablaHoy extends AbstractTableModel {
     ArrayList datos = new ArrayList();
     String [] columnas = {"Hora", "Paciente", "Estado"};
     
-    public tablaHoy(){
-            Object [] fila = new Object[3];
-            fila[0]= "22/10/2013";
-            fila[1]="Carlos Martín Pérez";
-            fila[2]="Realizada";
-            datos.add(fila);
-    }
-    
     public void addRow(Object [] fila){
         datos.add(fila);
         this.fireTableDataChanged();  

@@ -6,11 +6,13 @@ package dentistas;
 
 import Controlador.Configuracion;
 import Controlador.tablaHoy;
+import Controlador.tablaHoyRenderer;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 public class Principal extends javax.swing.JFrame {
@@ -28,9 +30,13 @@ public class Principal extends javax.swing.JFrame {
         
         //PESTAÑA HOY
             tablaHoy modeloTablaHoy = new tablaHoy();
+            tablaHoyRenderer rendererTablaHoy = new tablaHoyRenderer();
             Object [] nuevocliente = {"22/10/2013", "Juan Feliu", "Pendiente"};
+            Object [] nuevocliente2 = {"22/10/2013", "Carlos Martín Pérez", "Realizada"};
             modeloTablaHoy.addRow(nuevocliente);
+            modeloTablaHoy.addRow(nuevocliente2);
             JTableHoy.setModel(modeloTablaHoy);
+            JTableHoy.setDefaultRenderer(Object.class, rendererTablaHoy);
         //FIN PESTAÑA HOY
         
         this.jButton1.addActionListener(new java.awt.event.ActionListener() {            
