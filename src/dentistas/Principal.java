@@ -15,6 +15,7 @@ import Controlador.tablaHoy;
 import Controlador.tablaHoyRenderer;
 import Controlador.tablaPacientes;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
@@ -30,9 +31,11 @@ public class Principal extends javax.swing.JFrame {
     
     public static tablaPacientes modeloTablaPacientes = new tablaPacientes();
      public static tablaCitas modeloTablaCitas = new tablaCitas();
+     public static tablaHoy modeloTablaHoy = new tablaHoy();
     public static datosPacientes pacientes = new datosPacientes();
     public static datosCitas citas = new datosCitas();
     public static int pacienteSelec=-1;
+    public static int citaSelec=-1;
     
     public Principal() {
         super("Programa dentistas por Daniel y Hector");
@@ -42,12 +45,8 @@ public class Principal extends javax.swing.JFrame {
         fecha_actual.setText(Configuracion.fecha_actual());
         
         //PESTAÑA HOY
-            tablaHoy modeloTablaHoy = new tablaHoy();
             tablaHoyRenderer rendererTablaHoy = new tablaHoyRenderer();
-            Object [] nuevocliente = {"22/10/2013", "Juan Feliu", "Pendiente"};
-            Object [] nuevocliente2 = {"22/10/2013", "Carlos Martín Pérez", "Realizada"};
-            modeloTablaHoy.addRow(nuevocliente);
-            modeloTablaHoy.addRow(nuevocliente2);
+
             JTableHoy.setModel(modeloTablaHoy);
             JTableHoy.setDefaultRenderer(Object.class, rendererTablaHoy);
         //FIN PESTAÑA HOY
@@ -67,6 +66,7 @@ public class Principal extends javax.swing.JFrame {
             });
         //FIN PESTAÑA PACIENTES
             
+        //PESTAÑA CITAS
             JTableCitas.setModel(modeloTablaCitas);
             JTableCitas.addMouseListener(new MouseAdapter(){
             @Override
@@ -80,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
             }
             });
         
-        this.jButton1.addActionListener(new java.awt.event.ActionListener() {            
+        this.nuevacitabtn.addActionListener(new java.awt.event.ActionListener() {            
             @Override
             public void actionPerformed(ActionEvent e) {
               BotonNuevaCita view=new BotonNuevaCita();              
@@ -88,6 +88,21 @@ public class Principal extends javax.swing.JFrame {
               view.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             }
         });
+        
+        JTableCitas.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = JTableCitas.rowAtPoint(e.getPoint());
+                    int columna = JTableCitas.columnAtPoint(e.getPoint());
+                    //Si se marca fuera de las filas o columnas el valor se pone a -1
+                    if ((fila > -1) && (columna > -1)){
+                        Principal.citaSelec=fila;
+                    }
+            }
+            });
+        
+        //PESTAÑA CITAS
+        
         this.jButton3.addActionListener(new java.awt.event.ActionListener() {
             
             @Override
@@ -121,6 +136,23 @@ public class Principal extends javax.swing.JFrame {
             }
             }
         });
+        
+        this.borrarcitabtn.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            if(Principal.pacienteSelec>-1){
+                int dialogoborrar = JOptionPane.showConfirmDialog(rootPane, "¿Estas seguro que deseas borrar esta Cita?", "Eliminar Cita",JOptionPane.YES_NO_OPTION);
+                
+                if(dialogoborrar == JOptionPane.YES_OPTION){
+                    citas.removeCita(Principal.citaSelec);
+                    modeloTablaCitas.removeRow(Principal.citaSelec);
+                }
+                
+            }
+            }
+        });
+        
     }
 
     /**
@@ -143,8 +175,8 @@ public class Principal extends javax.swing.JFrame {
         JTableCitas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        nuevacitabtn = new javax.swing.JButton();
+        borrarcitabtn = new javax.swing.JButton();
         tabPacientes = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         JTablePacientes = new javax.swing.JTable();
@@ -191,14 +223,14 @@ public class Principal extends javax.swing.JFrame {
         tabHoyLayout.setHorizontalGroup(
             tabHoyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabHoyLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(tabHoyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabHoyLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addComponent(fecha_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fecha_actual, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabHoyLayout.createSequentialGroup()
-                        .addGap(292, 292, 292)
+                        .addGap(271, 271, 271)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -256,14 +288,15 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Nueva Cita");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nuevacitabtn.setText("Nueva Cita");
+        nuevacitabtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nuevacitabtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Editar Cita");
+        borrarcitabtn.setText("Borrar Cita");
+        borrarcitabtn.setToolTipText("");
 
         javax.swing.GroupLayout tabAgendaLayout = new javax.swing.GroupLayout(tabAgenda);
         tabAgenda.setLayout(tabAgendaLayout);
@@ -273,8 +306,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(tabAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nuevacitabtn, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(borrarcitabtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addContainerGap())
@@ -287,9 +320,9 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(tabAgendaLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevacitabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(borrarcitabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
                 .addContainerGap())
@@ -370,8 +403,6 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel8.setText("%IVA:");
 
-        jTextField5.setText("jTextField5");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -392,7 +423,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -401,15 +432,14 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))
+                                .addComponent(jTextField7)))
                         .addGap(15, 15, 15))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jTextField5)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,9 +510,9 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JTablePacientesMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void nuevacitabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevacitabtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_nuevacitabtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,11 +560,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable JTableCitas;
     private javax.swing.JTable JTableHoy;
     private javax.swing.JTable JTablePacientes;
+    private javax.swing.JButton borrarcitabtn;
     private javax.swing.JButton eliminarPacientebtn;
     private java.awt.Label fecha_actual;
     private java.awt.Label fecha_label;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private com.toedter.calendar.JCalendar jCalendar1;
@@ -558,6 +587,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton nuevacitabtn;
     private javax.swing.JPanel tabAgenda;
     private javax.swing.JPanel tabConfiguracion;
     private javax.swing.JPanel tabHoy;

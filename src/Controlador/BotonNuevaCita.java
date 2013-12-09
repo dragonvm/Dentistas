@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import dentistas.Principal;
 import java.text.SimpleDateFormat;
 import static dentistas.Principal.citas;
 import static dentistas.Principal.modeloTablaCitas;
@@ -24,6 +25,9 @@ public class BotonNuevaCita extends javax.swing.JFrame {
         initComponents();
         obtenerFecha();
 
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+        textDia.setText(formatoDeFecha.format(jCalendarCita.getDate()));
+        
         String [] listaPacientes=new String[pacientes.getNumPacientes()];
         for(int i=0;i<pacientes.getNumPacientes();i++){
             listaPacientes[i]=pacientes.getNombre(i);
@@ -40,6 +44,7 @@ public class BotonNuevaCita extends javax.swing.JFrame {
                   String [] arraycita = {textHora.getText(),textPaciente.getSelectedItem().toString(),textNota.getText()};
                   citas.addCita(textDia.getText(),textHora.getText(), textPaciente.getName(),textNota.getText());
                   modeloTablaCitas.addRow(arraycita);
+                  Principal.modeloTablaHoy.addRow(arraycita);
                   dispose();
             }
             
