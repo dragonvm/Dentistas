@@ -37,7 +37,7 @@ public class BotonNuevaCita extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                
-                  String [] arraycita = {textHora.getText(),textPaciente.getName(),textNota.getText()};
+                  String [] arraycita = {textHora.getText(),textPaciente.getSelectedItem().toString(),textNota.getText()};
                   citas.addCita(textDia.getText(),textHora.getText(), textPaciente.getName(),textNota.getText());
                   modeloTablaCitas.addRow(arraycita);
                   dispose();
