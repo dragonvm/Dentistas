@@ -5,6 +5,7 @@
 package dentistas;
 
 import Controlador.Configuracion;
+import Controlador.datosCitas;
 import Controlador.datosPacientes;
 import Controlador.tablaCitas;
 import Controlador.tablaHoy;
@@ -87,6 +88,40 @@ public class Principal extends javax.swing.JFrame {
             }
             });
         //FIN PESTAÑA PACIENTES
+            
+            JTableCitas.setModel(modeloTablaCitas);
+            JTableCitas.addMouseListener(new MouseListener(){
+                //MouseAdapter no funcionaba y usamos MouseListener
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = JTableCitas.rowAtPoint(e.getPoint());
+                    int columna = JTableCitas.columnAtPoint(e.getPoint());
+                    //Si se marca fuera de las filas o columnas el valor se pone a -1
+                    if ((fila > -1) && (columna > -1)){
+                        Principal.pacienteSelec=fila;
+                    }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                
+            }
+            });
         
         this.jButton1.addActionListener(new java.awt.event.ActionListener() {            
             @Override
@@ -148,7 +183,7 @@ public class Principal extends javax.swing.JFrame {
         JTableHoy = new javax.swing.JTable();
         tabAgenda = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTableCitas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jButton1 = new javax.swing.JButton();
@@ -232,7 +267,7 @@ public class Principal extends javax.swing.JFrame {
 
         jScrollPane2.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTableCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -243,7 +278,7 @@ public class Principal extends javax.swing.JFrame {
                 "Hora", "Paciente", "Realizado"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(JTableCitas);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Calendario"))));
 
@@ -535,6 +570,7 @@ public class Principal extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTableCitas;
     private javax.swing.JTable JTableHoy;
     private javax.swing.JTable JTablePacientes;
     private javax.swing.JButton eliminarPacientebtn;
@@ -558,7 +594,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
